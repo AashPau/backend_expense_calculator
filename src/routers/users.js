@@ -34,6 +34,8 @@ router.post("/login", async (req, res) => {
       //check if the password match
       const isMatched = comparePassword(password, user.password);
 
+      user.password = undefined;
+
       if (isMatched) {
         return res.json({
           status: "success",
