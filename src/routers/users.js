@@ -40,6 +40,7 @@ router.post("/login", async (req, res) => {
         return res.json({
           status: "success",
           message: "logged in Successfully",
+          user,
         });
       }
     }
@@ -66,7 +67,6 @@ router.post("/", async (req, res) => {
       ? res.json({
           status: "success",
           message: "account creation successful",
-          result: result,
         })
       : res.json({
           status: "error",
