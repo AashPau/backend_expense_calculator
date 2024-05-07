@@ -11,11 +11,11 @@ const transactionSchema = new mongoose.Schema(
       required: true,
     },
     amount: {
-      type: number,
+      type: Number,
       required: false,
     },
     date: {
-      type: date,
+      type: Date,
       required: true,
     },
     userId: {
@@ -27,4 +27,4 @@ const transactionSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-export default mongoose.model("Transactipn", transactionSchema);
+export default mongoose.model("Transaction", transactionSchema);
