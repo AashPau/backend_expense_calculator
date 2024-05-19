@@ -7,3 +7,11 @@ export const insertNewTrans = (transObj) => {
 export const getTransactionsByUserId = (userId) => {
   return !userId ? null : transactionSchema.find({ userId });
 };
+
+export const deleteTransaction = async (userId, idsToDelete) => {
+  return !userId
+    ? null
+    : transactionSchema.deleteMany({
+        _id: { $in: idsToDelete },
+      });
+};

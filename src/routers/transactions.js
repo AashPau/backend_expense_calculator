@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  deleteTransaction,
   getTransactionsByUserId,
   insertNewTrans,
 } from "../models/transactions/transactionModel.js";
@@ -41,6 +42,28 @@ router.post("/", async (req, res) => {
       : res.json({
           status: "error",
           message: "Falied adding transaction",
+        });
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: error.message,
+    });
+  }
+});
+
+router.delete("/", async (req, res) => {
+  try {
+    const { authorization } = req.headers;
+    const result = await deleteTransaction(authorization, req.body);
+
+    result?.deletedCount
+      ? res.json({
+          status: "success",
+          message: "New transaction has been deleted",
+        })
+      : res.json({
+          status: "error",
+          message: "Falied deleting transaction",
         });
   } catch (error) {
     res.status(500).json({
